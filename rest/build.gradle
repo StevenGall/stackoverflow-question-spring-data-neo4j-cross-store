@@ -1,0 +1,8 @@
+apply plugin: "war"
+
+startScripts.enabled = true
+bootRepackage.enabled = true
+
+dependencies {
+    compile project (":service")
+}

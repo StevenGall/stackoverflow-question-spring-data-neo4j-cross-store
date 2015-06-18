@@ -1,0 +1,3 @@
+include "rest",
+    "domain",
+    "service"

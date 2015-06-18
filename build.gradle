@@ -1,0 +1,60 @@
+buildscript {
+    repositories {
+        mavenCentral()
+        maven {
+            url "http://maven.tmatesoft.com/content/repositories/releases/"    
+        }
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.2.3.RELEASE")
+        classpath("me.cmoz.gradle:gradle-snapshot-plugin:2.0.2")
+    }
+}
+
+allprojects {
+    apply plugin: "eclipse"
+    apply plugin: "java"
+}
+
+subprojects {
+    apply plugin: "spring-boot"
+
+    startScripts.enabled = false
+    bootRepackage.enabled = false
+
+    repositories {
+        mavenCentral()
+        maven {
+          url "http://m2.neo4j.org/content/repositories/releases/"
+        }
+    }
+
+    dependencies {
+
+        compile "org.springframework.boot:spring-boot-starter"
+        compile "org.springframework.boot:spring-boot-starter-actuator"
+        compile "org.springframework.boot:spring-boot-starter-data-jpa"
+        compile "org.springframework.boot:spring-boot-starter-mail"
+        compile "org.springframework.boot:spring-boot-starter-security"
+        compile "org.springframework.boot:spring-boot-starter-web"
+        //compile "org.springframework.boot:spring-boot-starter-thymeleaf"
+        compile "org.springframework.data:spring-data-neo4j:3.3.0.RELEASE"
+        compile "org.springframework.data:spring-data-neo4j-rest:3.3.0.RELEASE"
+        compile ("org.springframework.data:spring-data-neo4j-cross-store:3.3.0.RELEASE") {
+          exclude group: "org.hibernate.javax.persistence", module: "hibernate-jpa-2.0-api"
+        }
+        compile "org.apache.commons:commons-lang3:3.4"
+        compile "javax.mail:javax.mail-api:1.5.3"
+        compile "javax.activation:activation:1.1.1"
+        
+        testCompile "org.springframework.boot:spring-boot-starter-test"
+        testCompile "com.h2database:h2"
+    }
+}
+
+sourceCompatibility = 1.8
+version = "0.0.1-SNAPSHOT"
+
+task wrapper(type: Wrapper) {
+    gradleVersion = "2.4"
+}
