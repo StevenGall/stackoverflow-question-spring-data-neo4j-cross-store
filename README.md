@@ -16,8 +16,8 @@ Modify the following files to include the postgres database, username and passwo
 * Start your neo4j database
 * Start your postgres database
 
-cd rest
-./../gradlew bootRun
+* cd rest
+* ./../gradlew bootRun
 
 #Test
 localhost:8080/users/test
